@@ -15,11 +15,12 @@ class _GuestScreenState extends State<GuestScreen> {
   Future<Album> fetchAlbum() async {
     final response = await http
         .get(Uri.parse('http://www.mocky.io/v2/596dec7f0f000023032b8017'));
+    final jsonresponse = json.decode(response.body);
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      return Album.fromJson(jsonDecode(response.body));
+      return Album.fromJson(jsonresponse[3]);
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
