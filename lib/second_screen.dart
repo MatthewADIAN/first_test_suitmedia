@@ -6,10 +6,14 @@ import 'package:first_app/guest_screen.dart';
 class SecondScreen extends StatelessWidget {
   final String namaSecond;
   final String namaLomba;
+  final String namaGuest;
+  final String tglLahir;
 
   SecondScreen({
     required this.namaSecond,
-    required this.namaLomba
+    required this.namaLomba,
+    required this.namaGuest,
+    required this.tglLahir,
   });
 
 
@@ -40,12 +44,12 @@ class SecondScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return GuestScreen();
+                  return GuestScreen(namaPenggunaAwal: namaSecond,);
                 }));
               },
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Text('pilih guest'),
+                child: Text(namaGuest),
               ),
             ),
           ],

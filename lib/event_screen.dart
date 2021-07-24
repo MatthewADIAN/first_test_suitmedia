@@ -29,6 +29,8 @@ class EventScreen extends StatelessWidget {
                       return SecondScreen(
                         namaSecond: namaEvent,
                         namaLomba: event.nama,
+                        namaGuest: 'pilih guest',
+                        tglLahir: '',
                       );
                     }));
                   },

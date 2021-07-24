@@ -8,8 +8,12 @@ import 'package:first_app/Album.dart';
 import 'package:http/http.dart' as http;
 
 class GuestScreen extends StatefulWidget {
+  final String namaPenggunaAwal;
+
+  GuestScreen({required this.namaPenggunaAwal});
+
   @override
-  _GuestScreenState createState() => _GuestScreenState();
+  _GuestScreenState createState() => _GuestScreenState(namaPengguna: namaPenggunaAwal);
 }
 
 Future<List<Album>> fetchAlbum(http.Client client) async {
@@ -30,6 +34,11 @@ List<Album> parsePhotos(String responseBody) {
 }
 
 class _GuestScreenState extends State<GuestScreen> {
+
+  final String namaPengguna;
+
+  _GuestScreenState({required this.namaPengguna});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +49,7 @@ class _GuestScreenState extends State<GuestScreen> {
         future: fetchAlbum(http.Client()),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return PhotosList(photos: snapshot.data!);
+            return PhotosList(photos: snapshot.data!, namaPenggunaAkhir: namaPengguna,);
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
@@ -53,10 +62,11 @@ class _GuestScreenState extends State<GuestScreen> {
 }
 
 class PhotosList extends StatelessWidget {
-  const PhotosList({Key? key, required this.photos}) : super(key: key);
+  const PhotosList({Key? key, required this.photos, required this.namaPenggunaAkhir}) : super(key: key);
 
   final List<Album> photos;
-  
+  final String namaPenggunaAkhir;
+
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +81,10 @@ class PhotosList extends StatelessWidget {
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return SecondScreen(
-                  namaLomba: '',
-                  namaSecond: '',
+                  namaLomba: 'pilih event',
+                  namaSecond: namaPenggunaAkhir,
+                  namaGuest: photos[index].name,
+                  tglLahir: photos[index].birthdate,
                 );
               }));
             },

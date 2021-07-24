@@ -39,6 +39,8 @@ class _FirstScreenState extends State<FirstScreen> {
                     return SecondScreen(
                       namaSecond: _nama,
                       namaLomba: 'pilih event',
+                      namaGuest: 'pilih guest',
+                      tglLahir: '',
                     );
                   }));
                 },
