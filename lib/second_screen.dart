@@ -46,6 +46,9 @@ class _SecondScreenState extends State<SecondScreen> {
     } else if (tglLahirStatus % 2 == 0){
       WidgetsBinding.instance!
           .addPostFrameCallback((_) => _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Image.asset('images/blackberry.jpg'))));
+    } else if (tglLahirStatus != -1) {
+      WidgetsBinding.instance!
+          .addPostFrameCallback((_) => _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Image.asset('images/feature_phone.jpg'))));
     }
   }
 

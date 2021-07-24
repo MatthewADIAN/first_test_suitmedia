@@ -31,6 +31,9 @@ class _FirstScreenState extends State<FirstScreen> {
                 },
               ),
             ),
+            SizedBox(
+              height: 40.0,
+            ),
             ConstrainedBox(
               constraints: BoxConstraints.tightFor(width: 150, height: 62),
               child: ElevatedButton(
