@@ -48,13 +48,18 @@ class EventScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(event.nama),
+                                SizedBox(
+                                  height: 20.0,
+                                ),
                                 Text(event.tanggal)
                               ],
                             ),
                           ),
                         ],
                       ),
-                      Divider(),
+                      Divider(
+                        color: Colors.black,
+                      ),
                     ],
                   ),
                 );
