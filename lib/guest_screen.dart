@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:first_app/model/guest_data.dart';
 import 'package:first_app/second_screen.dart';
+import 'package:http/http.dart' as http;
 
 class GuestScreen extends StatelessWidget {
+
+  Future<http.Response> fetchAlbum() {
+    return http.get(Uri.parse('http://www.mocky.io/v2/596dec7f0f000023032b8017'));
+  }
 
   @override
   Widget build(BuildContext context) {
