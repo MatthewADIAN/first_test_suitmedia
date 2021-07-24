@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/model/guest_data.dart';
 import 'package:first_app/second_screen.dart';
@@ -11,81 +12,68 @@ class GuestScreen extends StatefulWidget {
   _GuestScreenState createState() => _GuestScreenState();
 }
 
+Future<List<Album>> fetchAlbum(http.Client client) async {
+  final response = await http
+      .get(Uri.parse('http://www.mocky.io/v2/596dec7f0f000023032b8017'));
+
+  if (response.statusCode == 200) {
+    return compute(parsePhotos, response.body);
+  } else {
+    throw Exception('Failed to load album');
+  }
+}
+
+List<Album> parsePhotos(String responseBody) {
+  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
+
+  return parsed.map<Album>((json) => Album.fromJson(json)).toList();
+}
+
 class _GuestScreenState extends State<GuestScreen> {
-  Future<Album> fetchAlbum() async {
-    final response = await http
-        .get(Uri.parse('http://www.mocky.io/v2/596dec7f0f000023032b8017'));
-    final jsonresponse = json.decode(response.body);
-
-    if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      return Album.fromJson(jsonresponse[3]);
-    } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
-      throw Exception('Failed to load album');
-    }
-  }
-
-  late Future<Album> futureAlbum;
-
-  @override
-  void initState() {
-    super.initState();
-    futureAlbum = fetchAlbum();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('GUEST'),
       ),
-      body: SingleChildScrollView(
-        physics: ScrollPhysics(),
-        child: GridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          children: guestList.map((data) {
-            return InkWell(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return SecondScreen(
-                      namaLomba: '',
-                      namaSecond: '',
-                    );
-                  }));
-                },
-                child: Card(
-                  child: Column(
-                    children: <Widget>[
-                      Expanded(
-                        child: Image.asset(
-                          data.imageAsset,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      FutureBuilder<Album>(
-                        future: futureAlbum,
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return Text(snapshot.data!.name);
-                          } else if (snapshot.hasError) {
-                            return Text('${snapshot.error}');
-                          }
-
-                          // By default, show a loading spinner.
-                          return const CircularProgressIndicator();
-                        },
-                      ),
-                    ],
-                  ),
-                ));
-          }).toList(),
-        ),
+      body: FutureBuilder<List<Album>>(
+        future: fetchAlbum(http.Client()),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return PhotosList(photos: snapshot.data!);
+          } else if (snapshot.hasError) {
+            return Text('${snapshot.error}');
+          }
+          // By default, show a loading spinner.
+          return const CircularProgressIndicator();
+        },
       ),
     );
+  }
+}
+
+class PhotosList extends StatelessWidget {
+  const PhotosList({Key? key, required this.photos}) : super(key: key);
+
+  final List<Album> photos;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+        itemCount: photos.length,
+        shrinkWrap: true,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+        ),
+        itemBuilder: (context, index) {
+          return Text(photos[index].name);
+        });
+  }
+}
+//Text(photos[index].name);
+
+class FixWidget extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
