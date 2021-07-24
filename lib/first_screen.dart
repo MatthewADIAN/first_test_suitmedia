@@ -18,11 +18,15 @@ class _FirstScreenState extends State<FirstScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(left: 50.0, right: 50.0,),
+              padding: const EdgeInsets.only(left: 70.0, right: 70.0,),
               child: TextField(
                 decoration: InputDecoration(
                   labelText: 'masukan nama...',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 2.0,
+                    ),
+                  ),
                 ),
                 onChanged: (String? value) {
                   setState(() {
@@ -35,8 +39,8 @@ class _FirstScreenState extends State<FirstScreen> {
               height: 40.0,
             ),
             ConstrainedBox(
-              constraints: BoxConstraints.tightFor(width: 150, height: 62),
-              child: ElevatedButton(
+              constraints: BoxConstraints.tightFor(width: 250, height: 62),
+              child: OutlineButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return SecondScreen(
@@ -50,6 +54,9 @@ class _FirstScreenState extends State<FirstScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Text('next'),
+                ),
+                borderSide: BorderSide(
+                  width: 2.0,
                 ),
               ),
             ),

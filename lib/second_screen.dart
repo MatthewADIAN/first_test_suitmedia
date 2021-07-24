@@ -64,7 +64,7 @@ class _SecondScreenState extends State<SecondScreen> {
             SizedBox(
               height: 20.0,
             ),
-            ElevatedButton(
+            OutlineButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return EventScreen(
@@ -76,8 +76,14 @@ class _SecondScreenState extends State<SecondScreen> {
                 padding: const EdgeInsets.all(15.0),
                 child: Text('${widget.namaLomba}'),
               ),
+              borderSide: BorderSide(
+                width: 2.0,
+              ),
             ),
-            ElevatedButton(
+            SizedBox(
+              height: 40.0,
+            ),
+            OutlineButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return GuestScreen(namaPenggunaAwal: widget.namaSecond,);
@@ -86,6 +92,9 @@ class _SecondScreenState extends State<SecondScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Text(widget.namaGuest),
+              ),
+              borderSide: BorderSide(
+                width: 2.0,
               ),
             ),
           ],
