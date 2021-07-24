@@ -84,7 +84,7 @@ class PhotosList extends StatelessWidget {
                   namaLomba: 'pilih event',
                   namaSecond: namaPenggunaAkhir,
                   namaGuest: photos[index].name,
-                  tglLahir: photos[index].birthdate,
+                  tglLahir: int.parse(photos[index].birthdate.substring(8)),
                 );
               }));
             },

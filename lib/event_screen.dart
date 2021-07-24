@@ -30,7 +30,7 @@ class EventScreen extends StatelessWidget {
                         namaSecond: namaEvent,
                         namaLomba: event.nama,
                         namaGuest: 'pilih guest',
-                        tglLahir: '',
+                        tglLahir: -1,
                       );
                     }));
                   },
