@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/model/event_data.dart';
 import 'package:first_app/second_screen.dart';
+import 'package:first_app/event_screen_fragment.dart';
 
 class EventScreen extends StatelessWidget {
   final String namaEvent;
@@ -38,9 +39,19 @@ class EventScreen extends StatelessWidget {
                   child: Icon(Icons.search),
                   flex: 1,
                 ),
-                Expanded(
-                  child: Image.asset('images/btn_newMediaArticle_normal.png'),
-                  flex: 1,
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                          return EventScreenFragment(
+                            namaEvent: this.namaEvent,
+                          );
+                        }));
+                  },
+                  child: Expanded(
+                    child: Image.asset('images/btn_newMediaArticle_normal.png'),
+                    flex: 1,
+                  ),
                 ),
               ],
             ),
