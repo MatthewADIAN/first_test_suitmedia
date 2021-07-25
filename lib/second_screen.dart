@@ -4,7 +4,7 @@ import 'package:first_app/event_screen.dart';
 import 'package:first_app/guest_screen.dart';
 
 class SecondScreen extends StatefulWidget {
-  final String namaSecond;
+  String namaSecond;
   final String namaLomba;
   final String namaGuest;
   final int tglLahir;
@@ -18,33 +18,41 @@ class SecondScreen extends StatefulWidget {
   });
 
   @override
-  _SecondScreenState createState() => _SecondScreenState(tglLahirStatus: tglLahir);
+  _SecondScreenState createState() => _SecondScreenState();
 }
 
 class _SecondScreenState extends State<SecondScreen> {
 
-  final int tglLahirStatus;
-
-  _SecondScreenState({required this.tglLahirStatus});
+  String? cekPalindrome;
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    if((tglLahirStatus % 2 == 0) && (tglLahirStatus % 3 == 0)){
+    if((widget.tglLahir % 2 == 0) && (widget.tglLahir % 3 == 0)){
       WidgetsBinding.instance!
           .addPostFrameCallback((_) => _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Image.asset('images/ios.png'))));
-    } else if (tglLahirStatus % 3 == 0){
+    } else if (widget.tglLahir % 3 == 0){
       WidgetsBinding.instance!
           .addPostFrameCallback((_) => _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Icon(Icons.android))));
-    } else if (tglLahirStatus % 2 == 0){
+    } else if (widget.tglLahir % 2 == 0){
       WidgetsBinding.instance!
           .addPostFrameCallback((_) => _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Image.asset('images/blackberry.jpg'))));
-    } else if (tglLahirStatus != -1) {
+    } else if (widget.tglLahir != -1) {
       WidgetsBinding.instance!
           .addPostFrameCallback((_) => _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Image.asset('images/feature_phone.jpg'))));
     }
+
+    cekPalindrome = widget.namaSecond.replaceAll(new RegExp(r"\s+"), "");
+    if(cekPalindrome == cekPalindrome!.split('').reversed.join()){
+      WidgetsBinding.instance!
+          .addPostFrameCallback((_) => _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Text('isPalindrome'))));
+    } else {
+      WidgetsBinding.instance!
+          .addPostFrameCallback((_) => _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Text('not palindrome'))));
+    }
+
   }
 
   @override
