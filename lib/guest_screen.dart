@@ -69,44 +69,49 @@ class PhotosList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-        itemCount: photos.length,
-        shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-        ),
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return SecondScreen(
-                  namaLomba: 'pilih event',
-                  namaSecond: namaPenggunaAkhir,
-                  namaGuest: photos[index].name,
-                  tglLahir: int.parse(photos[index].birthdate.substring(8)),
-                );
-              }));
-            },
-            child: Card(
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: Image.asset('images/avatar.png'),
-                    flex: 2,
-                  ),
-                  Expanded(
-                    child: Text(photos[index].name),
-                    flex: 1,
-                  ),
-                  Expanded(
-                    child: Text(photos[index].birthdate),
-                    flex: 1,
-                  ),
-                ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+      child: GridView.builder(
+          itemCount: photos.length,
+          shrinkWrap: true,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0
+          ),
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SecondScreen(
+                    namaLomba: 'pilih event',
+                    namaSecond: namaPenggunaAkhir,
+                    namaGuest: photos[index].name,
+                    tglLahir: int.parse(photos[index].birthdate.substring(8)),
+                  );
+                }));
+              },
+              child: Card(
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: Image.asset('images/avatar.png'),
+                      flex: 2,
+                    ),
+                    Expanded(
+                      child: Text(photos[index].name),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: Text(photos[index].birthdate),
+                      flex: 1,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        });
+            );
+          }),
+    );
   }
 }
 
