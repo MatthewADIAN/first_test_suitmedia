@@ -76,7 +76,12 @@ class EventScreen extends StatelessWidget {
                               Text(
                                   event.tanggal
                               ),
-
+                              Text(
+                                  event.tags
+                              ),
+                              Text(
+                                  event.caption
+                              ),
                             ],
                           ),
                         ),
