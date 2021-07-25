@@ -23,9 +23,24 @@ class _FirstScreenState extends State<FirstScreen> {
           ),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text('Selamat Datang!'),
+                SizedBox(
+                  height: 40.0,
+                ),
+                Text('Sertakan gambar profil Anda untuk melengkapi profil'),
+                SizedBox(
+                  height: 40.0,
+                ),
+                Image.asset(
+                  'images/btn_add_photo.png',
+                  width: 130,
+                  height: 130,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(
                     left: 70.0,
@@ -54,7 +69,8 @@ class _FirstScreenState extends State<FirstScreen> {
                   constraints: BoxConstraints.tightFor(width: 250, height: 62),
                   child: OutlineButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
                         return SecondScreen(
                           namaSecond: _nama,
                           namaLomba: 'pilih event',
