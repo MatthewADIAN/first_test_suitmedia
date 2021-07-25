@@ -24,11 +24,24 @@ class EventScreen extends StatelessWidget {
                     'images/btn_backArticle_normal.png',
                   ),
                 ),
-                SizedBox(width: 15.0,),
-                Expanded(child: Text('MESSAGE FROM $namaEvent'), flex: 4,),
-                SizedBox(width: 50.0,),
-                Expanded(child: Icon(Icons.search), flex: 1,),
-                Expanded(child: Image.asset('images/btn_newMediaArticle_normal.png'), flex: 1,),
+                SizedBox(
+                  width: 15.0,
+                ),
+                Expanded(
+                  child: Text('MESSAGE FROM $namaEvent'),
+                  flex: 4,
+                ),
+                SizedBox(
+                  width: 50.0,
+                ),
+                Expanded(
+                  child: Icon(Icons.search),
+                  flex: 1,
+                ),
+                Expanded(
+                  child: Image.asset('images/btn_newMediaArticle_normal.png'),
+                  flex: 1,
+                ),
               ],
             ),
             ListView.builder(
@@ -49,33 +62,30 @@ class EventScreen extends StatelessWidget {
                       );
                     }));
                   },
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 2,
-                            child: Image.asset(event.imageAsset),
+                  child: Card(
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 2,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                event.nama
+                              ),
+                              Text(
+                                  event.tanggal
+                              ),
+
+                            ],
                           ),
-                          Expanded(
-                            flex: 1,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(event.nama),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
-                                Text(event.tanggal)
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Divider(
-                        color: Colors.black,
-                      ),
-                    ],
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Image.asset(event.imageAsset),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
