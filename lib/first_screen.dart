@@ -48,6 +48,7 @@ class _FirstScreenState extends State<FirstScreen> {
                       namaLomba: 'pilih event',
                       namaGuest: 'pilih guest',
                       tglLahir: -1,
+                      bulanLahir: 0,
                     );
                   }));
                 },

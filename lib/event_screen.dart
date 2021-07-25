@@ -31,6 +31,7 @@ class EventScreen extends StatelessWidget {
                         namaLomba: event.nama,
                         namaGuest: 'pilih guest',
                         tglLahir: -1,
+                        bulanLahir: 0,
                       );
                     }));
                   },

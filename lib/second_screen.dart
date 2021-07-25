@@ -8,6 +8,7 @@ class SecondScreen extends StatefulWidget {
   final String namaLomba;
   final String namaGuest;
   final int tglLahir;
+  final int bulanLahir;
 
 
   SecondScreen({
@@ -15,6 +16,7 @@ class SecondScreen extends StatefulWidget {
     required this.namaLomba,
     required this.namaGuest,
     required this.tglLahir,
+    required this.bulanLahir,
   });
 
   @override
@@ -24,6 +26,8 @@ class SecondScreen extends StatefulWidget {
 class _SecondScreenState extends State<SecondScreen> {
 
   String? cekPalindrome;
+  bool batascek = true;
+  int i = 2;
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -51,6 +55,23 @@ class _SecondScreenState extends State<SecondScreen> {
     } else {
       WidgetsBinding.instance!
           .addPostFrameCallback((_) => _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Text('not palindrome'))));
+    }
+
+    while(batascek && (i < widget.bulanLahir)){
+      if (widget.bulanLahir % i == 0){
+        batascek = false;
+      } else {
+        batascek = true;
+      }
+      i++;
+    }
+
+    if (batascek == false || widget.bulanLahir == 1){
+      WidgetsBinding.instance!
+          .addPostFrameCallback((_) => _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Text('Bukan Prima'))));
+    } else if (widget.bulanLahir != 0){
+      WidgetsBinding.instance!
+          .addPostFrameCallback((_) => _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Text('Prima'))));
     }
 
   }

@@ -88,6 +88,7 @@ class PhotosList extends StatelessWidget {
                     namaSecond: namaPenggunaAkhir,
                     namaGuest: photos[index].name,
                     tglLahir: int.parse(photos[index].birthdate.substring(8)),
+                    bulanLahir: int.parse(photos[index].birthdate.substring(5,7))
                   );
                 }));
               },
