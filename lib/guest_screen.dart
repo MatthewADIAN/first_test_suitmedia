@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:first_app/model/guest_data.dart';
 import 'package:first_app/second_screen.dart';
 import 'package:first_app/Album.dart';
 import 'package:http/http.dart' as http;
@@ -92,7 +91,7 @@ class PhotosList extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Expanded(
-                    child: Image.asset('images/lomba.jpg'),
+                    child: Image.asset('images/avatar.png'),
                     flex: 2,
                   ),
                   Expanded(
@@ -110,7 +109,6 @@ class PhotosList extends StatelessWidget {
         });
   }
 }
-//Text(photos[index].name);
 
 class FixWidget extends StatelessWidget {
   final BuildContext context2;
