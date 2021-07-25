@@ -11,13 +11,27 @@ class EventScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('EVENT'),
-        ),
         body: SingleChildScrollView(
-          physics: ScrollPhysics(),
-          child: SafeArea(
-            child: ListView.builder(
+      physics: ScrollPhysics(),
+      child: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Image.asset(
+                    'images/btn_backArticle_normal.png',
+                  ),
+                ),
+                SizedBox(width: 15.0,),
+                Expanded(child: Text('MESSAGE FROM $namaEvent'), flex: 4,),
+                SizedBox(width: 50.0,),
+                Expanded(child: Icon(Icons.search), flex: 1,),
+                Expanded(child: Image.asset('images/btn_newMediaArticle_normal.png'), flex: 1,),
+              ],
+            ),
+            ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (context, index) {
@@ -67,7 +81,9 @@ class EventScreen extends StatelessWidget {
               },
               itemCount: eventList.length,
             ),
-          ),
-        ));
+          ],
+        ),
+      ),
+    ));
   }
 }
