@@ -32,11 +32,17 @@ List<Album> parsePhotos(String responseBody) {
   return parsed.map<Album>((json) => Album.fromJson(json)).toList();
 }
 
+Future<List<Album>> _refreshProducts(BuildContext context) async {
+  return fetchAlbum(http.Client());
+}
+
 class _GuestScreenState extends State<GuestScreen> {
 
   final String namaPengguna;
 
   _GuestScreenState({required this.namaPengguna});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,17 +50,20 @@ class _GuestScreenState extends State<GuestScreen> {
       appBar: AppBar(
         title: Text('GUEST'),
       ),
-      body: FutureBuilder<List<Album>>(
-        future: fetchAlbum(http.Client()),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return PhotosList(photos: snapshot.data!, namaPenggunaAkhir: namaPengguna,);
-          } else if (snapshot.hasError) {
-            return Text('${snapshot.error}');
-          }
-          // By default, show a loading spinner.
-          return const CircularProgressIndicator();
-        },
+      body: RefreshIndicator(
+        onRefresh: () => _refreshProducts(context),
+        child: FutureBuilder<List<Album>>(
+          future: fetchAlbum(http.Client()),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return PhotosList(photos: snapshot.data!, namaPenggunaAkhir: namaPengguna,);
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+            // By default, show a loading spinner.
+            return const CircularProgressIndicator();
+          },
+        ),
       ),
     );
   }
