@@ -19,38 +19,36 @@ class EventScreen extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    child: Row(
-                      children: <Widget>[
-                        InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Image.asset(
-                            'images/btn_backArticle_normal.png',
-                          ),
+                  child: Row(
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Image.asset(
+                          'images/btn_backArticle_normal.png',
                         ),
-                        SizedBox(
-                          width: 20.0,
-                        ),
-                        Text('MESSAGE FROM $namaEvent'),
-                        SizedBox(
-                          width: 160.0,
-                        ),
-                        Icon(Icons.search),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                                  return EventScreenFragment(
-                                    namaEvent: this.namaEvent,
-                                  );
-                                }));
-                          },
-                          child: Image.asset('images/btn_newMediaArticle_normal.png'),
-                        ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        width: 20.0,
+                      ),
+                      Text('MESSAGE FROM $namaEvent'),
+                      SizedBox(
+                        width: 70.0,
+                      ),
+                      Icon(Icons.search),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                                return EventScreenFragment(
+                                  namaEvent: this.namaEvent,
+                                );
+                              }));
+                        },
+                        child: Image.asset('images/btn_newMediaArticle_normal.png'),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
