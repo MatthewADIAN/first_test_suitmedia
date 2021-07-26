@@ -7,6 +7,7 @@ class Map_screen extends StatefulWidget {
   _Map_screenState createState() => _Map_screenState();
 }
 
+
 class _Map_screenState extends State<Map_screen> {
   Completer<GoogleMapController> _controller = Completer();
 
@@ -36,8 +37,5 @@ class _Map_screenState extends State<Map_screen> {
     );
   }
 
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-  }
+
 }
