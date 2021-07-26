@@ -1,10 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.first_app">
    <uses-permission android:name="android.permission.INTERNET" />
-   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-   <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyBb481RB86j62Qb4CCp0Ix1WRH_LLc0GXA"/>
    <application
         android:label="first_app"
         android:icon="@mipmap/ic_launcher">

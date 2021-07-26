@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/model/event_data.dart';
 import 'package:first_app/second_screen.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class EventScreenFragment extends StatelessWidget {
   final String namaEvent;
