@@ -16,35 +16,41 @@ class EventScreenFragment extends StatelessWidget {
           child: SafeArea(
             child: Column(
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Image.asset(
-                        'images/btn_backArticle_normal.png',
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Image.asset(
+                          'images/btn_backArticle_normal.png',
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 15.0,
-                    ),
-                    Expanded(
-                      child: Text('MESSAGE FROM $namaEvent'),
-                      flex: 4,
-                    ),
-                    SizedBox(
-                      width: 50.0,
-                    ),
-                    Expanded(
-                      child: Icon(Icons.search),
-                      flex: 1,
-                    ),
-                    Expanded(
-                      child: Image.asset('images/btn_newMediaArticle_normal.png'),
-                      flex: 1,
-                    ),
-                  ],
+                      SizedBox(
+                        width: 20.0,
+                      ),
+                      Text('MESSAGE FROM $namaEvent'),
+                      SizedBox(
+                        width: 70.0,
+                      ),
+                      Icon(Icons.search),
+                      Image.asset('images/btn_newMediaArticle_normal.png'),
+                    ],
+                  ),
                 ),
-                SizedBox(height: 20.0,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.brown,
+                    ),
+                    child: Divider(
+                      height: 3,
+                    ),
+                  ),
+                ),
                 Container(
                   height: 150.0,
                   child: ListView.builder(
