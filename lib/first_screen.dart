@@ -28,11 +28,21 @@ class _FirstScreenState extends State<FirstScreen> {
                 SizedBox(
                   height: 20.0,
                 ),
-                Text('Selamat Datang!'),
+                Text(
+                  'Selamat Datang!',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
                 SizedBox(
                   height: 40.0,
                 ),
-                Text('Sertakan gambar profil Anda untuk melengkapi profil'),
+                Text(
+                  'Sertakan gambar profil Anda untuk melengkapi profil',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
                 SizedBox(
                   height: 40.0,
                 ),
@@ -41,6 +51,9 @@ class _FirstScreenState extends State<FirstScreen> {
                   width: 130,
                   height: 130,
                 ),
+                SizedBox(
+                  height: 50.0,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(
                     left: 70.0,
@@ -48,10 +61,18 @@ class _FirstScreenState extends State<FirstScreen> {
                   ),
                   child: TextField(
                     decoration: InputDecoration(
-                      labelText: 'masukan nama...',
-                      border: OutlineInputBorder(
+                      hintText: "Sarah Vidyarani",
+                      hintStyle: TextStyle(
+                        color: Colors.white
+                      ),
+                      enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          width: 2.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -63,10 +84,10 @@ class _FirstScreenState extends State<FirstScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 40.0,
+                  height: 50.0,
                 ),
                 ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(width: 250, height: 62),
+                  constraints: BoxConstraints.tightFor(width: 320, height: 62),
                   child: OutlineButton(
                     onPressed: () {
                       Navigator.push(context,
@@ -82,10 +103,16 @@ class _FirstScreenState extends State<FirstScreen> {
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(15.0),
-                      child: Text('next'),
+                      child: Text(
+                        'Selesai',
+                        style: TextStyle(
+                          color: Colors.white
+                        ),
+                      ),
                     ),
                     borderSide: BorderSide(
                       width: 2.0,
+                      color: Colors.white,
                     ),
                   ),
                 ),

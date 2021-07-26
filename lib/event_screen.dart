@@ -17,44 +17,52 @@ class EventScreen extends StatelessWidget {
           child: SafeArea(
             child: Column(
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Image.asset(
-                        'images/btn_backArticle_normal.png',
-                      ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: Row(
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Image.asset(
+                            'images/btn_backArticle_normal.png',
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20.0,
+                        ),
+                        Text('MESSAGE FROM $namaEvent'),
+                        SizedBox(
+                          width: 160.0,
+                        ),
+                        Icon(Icons.search),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                                  return EventScreenFragment(
+                                    namaEvent: this.namaEvent,
+                                  );
+                                }));
+                          },
+                          child: Image.asset('images/btn_newMediaArticle_normal.png'),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: 15.0,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.brown,
                     ),
-                    Expanded(
-                      child: Text('MESSAGE FROM $namaEvent'),
-                      flex: 4,
+                    child: Divider(
+                      height: 3,
                     ),
-                    SizedBox(
-                      width: 50.0,
-                    ),
-                    Expanded(
-                      child: Icon(Icons.search),
-                      flex: 1,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                              return EventScreenFragment(
-                                namaEvent: this.namaEvent,
-                              );
-                            }));
-                      },
-                      child: Expanded(
-                        child: Image.asset(
-                            'images/btn_newMediaArticle_normal.png'),
-                        flex: 1,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
                 ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
@@ -74,45 +82,58 @@ class EventScreen extends StatelessWidget {
                               );
                             }));
                       },
-                      child: Card(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              flex: 2,
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      event.nama,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                flex: 2,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        event.nama,
+                                        style: TextStyle(fontWeight: FontWeight.bold),
                                       ),
-                                    ),
-                                    Text(
-                                      event.tanggal,
-                                      style: TextStyle(
+                                      SizedBox(height: 5,),
+                                      Text(
+                                        event.tanggal,
+                                        style: TextStyle(
                                           color: Colors.amber,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                        event.tags
-                                    ),
-                                    SizedBox(height: 30.0,),
-                                    Text(
-                                        event.caption
-                                    ),
-                                  ],
+                                      SizedBox(height: 5,),
+                                      Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey,
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              event.tags,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          )),
+                                      SizedBox(
+                                        height: 30.0,
+                                      ),
+                                      Text(event.caption),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Image.asset(event.imageAsset),
-                            ),
-                          ],
+                              Expanded(
+                                flex: 1,
+                                child: Image.asset(event.imageAsset),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
