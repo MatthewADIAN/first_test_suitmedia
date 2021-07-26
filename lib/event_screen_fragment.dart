@@ -2,12 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/model/event_data.dart';
 import 'package:first_app/second_screen.dart';
+import 'package:first_app/google_screen.dart';
 
-class EventScreenFragment extends StatelessWidget {
+class EventScreenFragment extends StatefulWidget {
   final String namaEvent;
 
   EventScreenFragment({required this.namaEvent});
 
+  @override
+  _EventScreenFragmentState createState() => _EventScreenFragmentState();
+}
+
+class _EventScreenFragmentState extends State<EventScreenFragment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +37,7 @@ class EventScreenFragment extends StatelessWidget {
                       SizedBox(
                         width: 20.0,
                       ),
-                      Text('MESSAGE FROM $namaEvent'),
+                      Text('MESSAGE FROM ${widget.namaEvent}'),
                       SizedBox(
                         width: 70.0,
                       ),
@@ -63,7 +69,7 @@ class EventScreenFragment extends StatelessWidget {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                                 return SecondScreen(
-                                  namaSecond: namaEvent,
+                                  namaSecond: widget.namaEvent,
                                   namaLomba: event.nama,
                                   namaGuest: 'pilih guest',
                                   tglLahir: -1,
@@ -80,6 +86,7 @@ class EventScreenFragment extends StatelessWidget {
                     itemCount: eventList.length,
                   ),
                 ),
+                Map_screen(),
               ],
             ),
           ),
